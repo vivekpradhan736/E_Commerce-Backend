@@ -1,11 +1,18 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const colors = require("colors");
 
-const connectDatabase = () => {
-    mongoose.connect("mongodb://localhost:27017/Ecommerce", { family: 4 }).then(() => {
-        console.log("Mongodb connected with server");
-    }).catch(err => {
-        console.error("MongoDB connection error:", err);
-    });
-}
+const connectDatabase = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.DB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+
+    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
+  } catch (error) {
+    console.error(`Error: ${error.message}`.red.bold);
+    process.exit(1); // Exit with a non-zero status code to indicate an error
+  }
+};
 
 module.exports = connectDatabase;
