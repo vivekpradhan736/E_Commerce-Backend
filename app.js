@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 const path = require("path");
 const cors = require('cors');
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: 'https://e-commerce-frontend-rosy-nine.vercel.app', credentials: true }));
 
 // Config
 dotenv.config({path:'config/config.env'});
